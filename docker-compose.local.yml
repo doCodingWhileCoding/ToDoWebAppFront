@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  react:
+    container_name: react
+    restart: always
+    build: .
+    ports: 
+      - "3000:3000"
+    networks:
+      - front_back
+    volumes:
+      - .:/usr/src/app  
+    command: npm run local
+
+networks:
+  front_back:
