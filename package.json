@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "local": "vite",
+    "dev": "vite --mode dev",
     "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "docker-local": "docker compose -f docker-compose.local.yml build && docker compose -f docker-compose.local.yml up"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.35.3",
