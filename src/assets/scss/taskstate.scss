@@ -1,0 +1,10 @@
+.TaskState {
+  height: 24px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+}

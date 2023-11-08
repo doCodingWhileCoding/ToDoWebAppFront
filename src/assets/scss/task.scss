@@ -1,0 +1,35 @@
+.Task {
+  width: 80%;
+  height: fit-content;
+  min-height: 40px;
+  background-color: #ffc900;
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.707);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+
+  &_State {
+    height: 100%;
+    padding: 10px;
+  }
+  &_Content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    cursor: pointer;
+    &_Preview {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+  &_Delete {
+    padding: 10px;
+  }
+}

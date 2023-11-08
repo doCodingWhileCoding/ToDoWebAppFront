@@ -1,0 +1,21 @@
+.TaskList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .Task {
+    &:last-child {
+      margin-bottom: 150px;
+    }
+    &:first-child {
+      margin-top: 100px;
+    }
+  }
+}

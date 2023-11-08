@@ -1,0 +1,37 @@
+.Menu {
+  background-color: #ffc900;
+  width: 20%;
+  height: 100%;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid black;
+  font-family: 'DM Sans';
+  font-size: 20px;
+  font-weight: 600;
+  &_Main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &_Inbox,
+    &_ToDay,
+    &_Next,
+    &_Record {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover,
+      &.selected {
+        background-color: rgba(255, 144, 233);
+        color: black;
+        > svg {
+          fill: black;
+        }
+      }
+    }
+  }
+}

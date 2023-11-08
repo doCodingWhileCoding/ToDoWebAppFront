@@ -1,0 +1,25 @@
+.TaskTitle {
+  width: 100%;
+  font-family: 'DM Sans';
+  font-size: 20px;
+  font-weight: 600;
+  position: relative;
+  color: black;
+  &_Stroke {
+    position: absolute;
+    top: 50%;
+    border-radius: 10px;
+    height: 3px;
+    background-color: white;
+  }
+  input {
+    color: black;
+    border: none;
+    outline: none;
+    font-family: 'DM Sans';
+    font-size: 20px;
+    font-weight: 600;
+    width: 100%;
+    background-color: transparent;
+  }
+}
