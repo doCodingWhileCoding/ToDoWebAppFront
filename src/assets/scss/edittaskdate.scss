@@ -1,0 +1,10 @@
+@import 'variables.scss';
+.EditTaskDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  svg {
+    fill: $tertiary-color;
+  }
+}

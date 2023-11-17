@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateTask } from '../api/taskAPI'
+import { motion } from 'framer-motion'
 
 const TaskNotes = (props) => {
   const { taskId, note, queryKey } = props
@@ -29,11 +30,11 @@ const TaskNotes = (props) => {
     const data = {
       note: e.target.value,
     }
-    updateTaskMutation.mutate({ id: taskId, data: data })
+    updateTaskMutation.mutate({ taskId: taskId, data: data })
   }
 
   return (
-    <textarea
+    <motion.textarea
       className="TaskNotes"
       value={note == null ? '' : note}
       placeholder="Notas"
@@ -43,7 +44,7 @@ const TaskNotes = (props) => {
         minHeight: '50px',
         overflowY: 'hidden',
       }}
-    ></textarea>
+    ></motion.textarea>
   )
 }
 TaskNotes.propTypes = {

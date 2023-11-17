@@ -1,0 +1,79 @@
+@import 'variables.scss';
+.CustomDatePicker {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  &_Header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &_Month {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      > h2 {
+        font-size: 20px;
+      }
+      &_Change {
+        margin-left: auto;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        > div {
+          cursor: pointer;
+        }
+        &_Prev {
+          &.disabled {
+            cursor: not-allowed;
+            > svg {
+              fill: $senary-color;
+            }
+          }
+        }
+      }
+    }
+    &_Week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 20px;
+    }
+  }
+  &_Content {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 20px;
+  }
+  &_Content {
+    &_Day {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      > time {
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        &.isNotCurrentMont {
+          color: $senary-color;
+        }
+        &.isBeforeToday {
+          cursor: not-allowed;
+        }
+        &.isToday {
+          color: $octonary-color;
+        }
+        &.isSelectedDay {
+          background-color: $secondary-color;
+          color: $primary-color;
+          &.isToday {
+            color: $octonary-color;
+          }
+        }
+      }
+    }
+  }
+}

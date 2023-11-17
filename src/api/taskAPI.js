@@ -1,11 +1,19 @@
 import api from '@/lib/axios'
 
 export const getCompletedTasks = async (page = 1) => {
-  const res = await api.get(`/tasks?completed=true&page=${page}`)
+  const res = await api.get(`/tasks?type=completed&page=${page}`)
   return res.data
 }
-export const getUnCompletedTasks = async (page = 1) => {
-  const res = await api.get(`/tasks?completed=false&page=${page}`)
+export const getInboxTasks = async (page = 1) => {
+  const res = await api.get(`/tasks?type=inbox&page=${page}`)
+  return res.data
+}
+export const getTodayTasks = async (page = 1) => {
+  const res = await api.get(`/tasks?type=today&page=${page}`)
+  return res.data
+}
+export const getUpcomingTasks = async () => {
+  const res = await api.get(`/tasks?type=upcoming&page=${0}`)
   return res.data
 }
 export const createTask = async (task) => {
@@ -19,11 +27,11 @@ export const deleteTask = async (taskId) => {
 }
 
 export const updateTask = async (data) => {
-  await api.put(`/tasks/${data.id}`, data.data)
+  await api.put(`/tasks/${data.taskId}`, data.data)
 }
 export const updateTaskIsCompleted = async (data) => {
-  await api.put(`/tasks/${data.id}/isCompleted`, data.data)
+  await api.put(`/tasks/${data.taskId}/isCompleted`, data.data)
 }
 export const updateTaskPosition = async (data) => {
-  await api.put(`/tasks/${data.id}/position`, data.data)
+  await api.put(`/tasks/${data.taskId}/position`, data.data)
 }

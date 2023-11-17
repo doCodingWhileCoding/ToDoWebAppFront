@@ -1,14 +1,18 @@
+@import 'variables.scss';
 .Menu {
-  background-color: #ffc900;
+  background-color: $quaternary-color;
   width: 20%;
   height: 100%;
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  border-right: 2px solid black;
-  font-family: 'DM Sans';
+  border-right: 2px solid $primary-color;
   font-size: 20px;
   font-weight: 600;
+  color: $secondary-color;
+  svg {
+    fill: $secondary-color;
+  }
   &_Main {
     display: flex;
     flex-direction: column;
@@ -26,11 +30,7 @@
       cursor: pointer;
       &:hover,
       &.selected {
-        background-color: rgba(255, 144, 233);
-        color: black;
-        > svg {
-          fill: black;
-        }
+        background-color: $tertiary-color;
       }
     }
   }

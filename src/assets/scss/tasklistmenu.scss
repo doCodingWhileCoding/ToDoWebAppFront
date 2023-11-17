@@ -1,9 +1,11 @@
+@import 'variables.scss';
 .TaskListMenu {
   position: absolute;
   z-index: 1;
   top: 0;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  // backdrop-filter: blur(20px);
+  // -webkit-backdrop-filter: blur(20px);
+  background-color: $tertiary-color;
   width: 100%;
   padding: 0% 10%;
   height: 10%;
@@ -11,8 +13,10 @@
   flex-direction: row;
   gap: 10px;
   align-items: center;
-  font-family: 'DM Sans';
   font-size: 40px;
   font-weight: 600;
-  color: white;
+  color: $quaternary-color;
+  svg {
+    fill: $quaternary-color;
+  }
 }

@@ -1,10 +1,9 @@
 import '../assets/scss/tasklist.scss'
 import PropTypes from 'prop-types'
 import Task from './Task'
-import { AnimatePresence, LayoutGroup } from 'framer-motion'
+import { AnimatePresence, LayoutGroup, Reorder } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { useTaskStore } from '../store/app.store'
-import { Reorder } from 'framer-motion'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateTaskPosition } from '../api/taskAPI'
 
@@ -38,7 +37,7 @@ const TaskList = (props) => {
         const data = {
           position: newPosition,
         }
-        updateTaskMutation.mutate({ id: task._id, data: data })
+        updateTaskMutation.mutate({ taskId: task._id, data: data })
       }
     }
   }
@@ -55,6 +54,7 @@ const TaskList = (props) => {
                 ref={i === tasks.length - 1 ? lastTaskRef : null}
                 title={task.title}
                 note={task.note}
+                date={task.date}
                 isCompleted={task.isCompleted}
                 taskId={task._id}
               />

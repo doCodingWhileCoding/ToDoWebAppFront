@@ -22,7 +22,7 @@ const TaskTitle = (props) => {
     const data = {
       title: e.target.value,
     }
-    updateTaskMutation.mutate({ id: taskId, data: data })
+    updateTaskMutation.mutate({ taskId: taskId, data: data })
   }
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -73,11 +73,11 @@ const TaskTitle = (props) => {
     }
   }, [isPresent])
   return (
-    <div className="TaskTitle">
+    <motion.div className="TaskTitle">
       <motion.div animate={controls} variants={TaskTitleStrokevariants} className="TaskTitle_Stroke"></motion.div>
       {!isEditMode && <div>{title}</div>}
       {isEditMode && <input ref={input} type="text" value={title} onChange={handleChange} onKeyDown={handleKeyDown} />}
-    </div>
+    </motion.div>
   )
 }
 TaskTitle.propTypes = {

@@ -1,11 +1,11 @@
+@import 'variables.scss';
 .TaskNotes {
   width: 100%;
   border: none;
   outline: none;
   resize: none;
-  font-family: 'DM Sans';
   font-size: 15px;
   font-weight: 600;
-  color: black;
+  color: $secondary-color;
   background-color: transparent;
 }

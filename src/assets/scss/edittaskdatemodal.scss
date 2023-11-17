@@ -1,0 +1,85 @@
+@import 'variables.scss';
+.EditTaskDateModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    fill: $secondary-color;
+  }
+  &_Container {
+    position: relative;
+    width: 20%;
+    min-width: 384px;
+    min-height: 60%;
+    padding: 20px;
+    background-color: $primary-color;
+    color: $secondary-color;
+    border-radius: 20px;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .Header {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      > h1 {
+        font-size: 25px;
+      }
+      > p {
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+      }
+    }
+    .Today,
+    .SomeDay {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .Today {
+      border-radius: 5px;
+      padding: 5px;
+      &.isToday {
+        background-color: $quaternary-color;
+      }
+      > svg {
+        fill: $tertiary-color;
+      }
+    }
+    .Actions {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      width: 100%;
+      > div {
+        width: 100%;
+        padding: 10px 40px;
+        font-size: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      &_Delete {
+        background-color: rgb(160, 0, 0);
+      }
+      &_Apply {
+        background-color: rgb(98, 98, 98);
+      }
+    }
+  }
+}

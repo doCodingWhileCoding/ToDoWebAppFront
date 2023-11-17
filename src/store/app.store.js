@@ -14,6 +14,14 @@ export const usePopUpStore = create((set) => ({
       }
     }),
 }))
+export const useEditTaskDateModalStore = create((set) => ({
+  showEditTaskDateModal: false,
+  taskId: '',
+  queryKey: [],
+  date: null,
+  setEditTaskDateModalData: (taskId, queryKey, date) => set(() => ({ taskId: taskId, queryKey: queryKey, date: date })),
+  setShowEditTaskDateModal: (value) => set(() => ({ showEditTaskDateModal: value })),
+}))
 export const useMenuStore = create((set) => ({
   selectedMenuItem: 'inbox',
   updateSelectedMenuItem: (newMenuItem) => set(() => ({ selectedMenuItem: newMenuItem })),
@@ -28,4 +36,8 @@ export const useTaskStore = create((set) => ({
     })),
   scrollToTop: false,
   setScrollToTop: (value) => set(() => ({ scrollToTop: value })),
+}))
+export const useTaskStepStore = create((set) => ({
+  focusedTaskStepId: '',
+  setFocusedTaskStepId: (focusedTaskStepId) => set(() => ({ focusedTaskStepId: focusedTaskStepId })),
 }))

@@ -26,11 +26,11 @@ const Menu = () => {
           <p>Hoy</p>
         </div>
         <div
-          className={classNames({ Menu_Main_Next: true, selected: selectedMenuItem == 'next' })}
-          onClick={() => updateSelectedMenuItem('next')}
+          className={classNames({ Menu_Main_Next: true, selected: selectedMenuItem == 'upcoming' })}
+          onClick={() => updateSelectedMenuItem('upcoming')}
         >
           <CalendarIcon />
-          <p>Próximo</p>
+          <p>Programadas</p>
         </div>
         <div
           className={classNames({ Menu_Main_Record: true, selected: selectedMenuItem == 'record' })}

@@ -22,7 +22,7 @@ const TaskState = (props) => {
     }
     console.log(!isCompleted)
     setIsCompleting(true)
-    updateTaskMutation.mutate({ id: taskId, data: data })
+    updateTaskMutation.mutate({ taskId: taskId, data: data })
   }
   return (
     <div className="TaskState" onClick={() => handleCheck()}>

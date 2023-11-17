@@ -1,20 +1,23 @@
 import '../assets/scss/task.scss'
 import PropTypes from 'prop-types'
 import { useEffect, useState, useRef, forwardRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, Reorder, useDragControls } from 'framer-motion'
 import TaskState from './TaskState'
 import TaskTitle from './TaskTitle'
 import TaskNotes from './TaskNotes'
 import { useTaskStore } from '../store/app.store'
 import DeleteTask from './DeleteTask'
-import { Reorder } from 'framer-motion'
+import TaskMenu from './TaskMenu'
+import TaskStepList from './TaskStepList'
 const Task = forwardRef((props, lastTaskRef) => {
-  const { title, note, isCompleted, taskId, task, queryKey } = props
+  const { title, note, isCompleted, date, taskId, task, queryKey } = props
   const [isEditMode, setIsEditMode] = useState(false)
   const [isCompleting, setIsCompleting] = useState(false)
+  const [hasSteps, setHasSteps] = useState(false)
   const needAnimationTasksId = useTaskStore((state) => state.needAnimationTasksId)
   const removeNeedAnimationTaskId = useTaskStore((state) => state.removeNeedAnimationTaskId)
   const taskRef = useRef(null)
+  const controls = useDragControls()
   useEffect(() => {
     if (lastTaskRef && taskRef.current) {
       lastTaskRef.current = taskRef.current
@@ -55,6 +58,8 @@ const Task = forwardRef((props, lastTaskRef) => {
   return (
     <Reorder.Item
       value={task}
+      dragListener={false}
+      dragControls={controls}
       ref={taskRef}
       className="Task"
       layout
@@ -65,7 +70,49 @@ const Task = forwardRef((props, lastTaskRef) => {
       exit="exit"
       variants={Taskvariants}
     >
-      <motion.div className="Task_State" layout="position">
+      <motion.div
+        className="Task_Preview"
+        layout="position"
+        onClick={() => setIsEditMode(true)}
+        onPointerDown={(e) => controls.start(e)}
+      >
+        <motion.div className="Task_Preview_State">
+          <TaskState
+            taskId={taskId}
+            isCompleted={isCompleted}
+            isCompleting={isCompleting}
+            setIsCompleting={setIsCompleting}
+          />
+        </motion.div>
+        <motion.div className="Task_Preview_Title">
+          <TaskTitle
+            queryKey={queryKey}
+            taskId={taskId}
+            title={title}
+            isEditMode={isEditMode}
+            setIsEditMode={setIsEditMode}
+            isCompleted={isCompleted}
+            isCompleting={isCompleting}
+          />
+        </motion.div>
+
+        <motion.div className="Task_Preview_Delete" style={{ marginLeft: 'auto' }}>
+          <DeleteTask taskId={taskId} queryKey={queryKey} />
+        </motion.div>
+      </motion.div>
+      {isEditMode && (
+        <motion.div
+          className="Task_Content"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <TaskNotes taskId={taskId} note={note} queryKey={queryKey} />
+          <TaskStepList taskId={taskId} setHasSteps={setHasSteps} />
+          <TaskMenu date={date} taskId={taskId} hasSteps={hasSteps} />
+        </motion.div>
+      )}
+      {/* <motion.div className="Task_State" layout="position">
         <TaskState
           taskId={taskId}
           isCompleted={isCompleted}
@@ -74,7 +121,7 @@ const Task = forwardRef((props, lastTaskRef) => {
         />
       </motion.div>
       <motion.div className="Task_Content" onClick={() => setIsEditMode(true)}>
-        <motion.div className="Task_Content_Preview" layout="position">
+        <motion.div className="Task_Content_Preview" layout="position" onPointerDown={(e) => controls.start(e)}>
           <TaskTitle
             queryKey={queryKey}
             taskId={taskId}
@@ -93,12 +140,14 @@ const Task = forwardRef((props, lastTaskRef) => {
             transition={{ duration: 1 }}
           >
             <TaskNotes taskId={taskId} note={note} queryKey={queryKey} />
+            <TaskStepList taskId={taskId} setHasSteps={setHasSteps} />
+            <TaskMenu date={date} taskId={taskId} hasSteps={hasSteps} />
           </motion.div>
         )}
       </motion.div>
       <motion.div className="Task_Delete" style={{ marginLeft: 'auto' }} layout="position">
         <DeleteTask taskId={taskId} queryKey={queryKey} />
-      </motion.div>
+      </motion.div> */}
     </Reorder.Item>
   )
 })
@@ -106,9 +155,13 @@ Task.displayName = 'Task'
 Task.propTypes = {
   title: PropTypes.string,
   isCompleted: PropTypes.bool,
+  date: PropTypes.string,
   taskId: PropTypes.string,
   task: PropTypes.object,
   note: PropTypes.string,
   queryKey: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+}
+Task.defaultProps = {
+  date: null,
 }
 export default Task
