@@ -1,8 +1,8 @@
 import '../assets/scss/upcoming.scss'
 import { getUpcomingTasks } from '../api/taskAPI'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import UpcomingDateList from './UpcomingDateList'
-import TaskListMenu from './TaskListMenu'
+import UpcomingDateList from '../components/UpcomingDateList'
+import TaskListMenu from '../components/TaskListMenu'
 import CalendarIcon from '../assets/icons/CalendarIcon'
 const Upcoming = () => {
   const queryKey = ['tasks', { type: 'upcoming' }]

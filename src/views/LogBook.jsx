@@ -1,8 +1,8 @@
 import '../assets/scss/logbook.scss'
 import { getCompletedTasks } from '../api/taskAPI'
-import TaskList from './TaskList'
-import InfinityScroll from './InfinityScroll'
-import TaskListMenu from './TaskListMenu'
+import TaskList from '../components/TaskList'
+import InfinityScroll from '../components/InfinityScroll'
+import TaskListMenu from '../components/TaskListMenu'
 import InboxIcon from '../assets/icons/InboxIcon'
 const LogBook = () => {
   const queryKey = ['tasks', { type: 'completed' }]

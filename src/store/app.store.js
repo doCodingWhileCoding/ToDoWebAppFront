@@ -22,9 +22,9 @@ export const useEditTaskDateModalStore = create((set) => ({
   setEditTaskDateModalData: (taskId, queryKey, date) => set(() => ({ taskId: taskId, queryKey: queryKey, date: date })),
   setShowEditTaskDateModal: (value) => set(() => ({ showEditTaskDateModal: value })),
 }))
-export const useMenuStore = create((set) => ({
-  selectedMenuItem: 'inbox',
-  updateSelectedMenuItem: (newMenuItem) => set(() => ({ selectedMenuItem: newMenuItem })),
+export const useSettingsModalStore = create((set) => ({
+  showSettingsModal: false,
+  setShowSettingsModal: (value) => set(() => ({ showSettingsModal: value })),
 }))
 export const useTaskStore = create((set) => ({
   needAnimationTasksId: [],

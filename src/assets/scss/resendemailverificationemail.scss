@@ -1,0 +1,23 @@
+@import 'variables.scss';
+.ResendEmailVerificationEmail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $secondary-color;
+  gap: 10px;
+  button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: $tertiary-color;
+    color: $secondary-color;
+    cursor: pointer;
+  }
+  .error {
+    color: $octonary-color;
+  }
+}

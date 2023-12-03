@@ -1,9 +1,9 @@
 import '../assets/scss/today.scss'
 import { getTodayTasks } from '../api/taskAPI'
-import TaskList from './TaskList'
-import AddTask from './AddTask'
-import InfinityScroll from './InfinityScroll'
-import TaskListMenu from './TaskListMenu'
+import TaskList from '../components/TaskList'
+import AddTask from '../components/AddTask'
+import InfinityScroll from '../components/InfinityScroll'
+import TaskListMenu from '../components/TaskListMenu'
 import TodayIcon from '../assets/icons/TodayIcon'
 const Today = () => {
   const queryKey = ['tasks', { type: 'today' }]

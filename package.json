@@ -12,6 +12,7 @@
     "docker-local": "docker compose -f docker-compose.local.yml build && docker compose -f docker-compose.local.yml up"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
     "@tanstack/react-query": "^5.0.5",
     "axios": "^1.5.0",
     "classnames": "^2.3.2",
@@ -22,7 +23,9 @@
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0",
+    "react-hook-form": "^7.48.2",
+    "react-router-dom": "^6.19.0",
+    "zod": "^3.22.4",
     "zustand": "^4.4.1"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 @import 'variables.scss';
 .Menu {
   background-color: $quaternary-color;
-  width: 20%;
+  width: 100%;
   height: 100%;
   padding: 40px 20px;
   display: flex;
@@ -10,6 +10,9 @@
   font-size: 20px;
   font-weight: 600;
   color: $secondary-color;
+  a {
+    color: $secondary-color;
+  }
   svg {
     fill: $secondary-color;
   }
@@ -17,10 +20,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    &_Inbox,
-    &_ToDay,
-    &_Next,
-    &_Record {
+    a {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -29,9 +29,16 @@
       border-radius: 5px;
       cursor: pointer;
       &:hover,
-      &.selected {
+      &.active {
         background-color: $tertiary-color;
       }
     }
+  }
+  &_Settings {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    gap: 5px;
+    cursor: pointer;
   }
 }

@@ -1,0 +1,7 @@
+const errorMessages = {
+  EMAIL_NOT_VERIFIED: 'EMAIL_NOT_VERIFIED',
+  INVALID_LOGIN: 'INVALID_LOGIN',
+  TOO_MANY_REQUESTS: 'TOO_MANY_REQUESTS',
+  TOKEN_EXPIRED: 'TOKEN_EXPIRED',
+}
+export default errorMessages

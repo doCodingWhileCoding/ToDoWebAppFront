@@ -1,9 +1,9 @@
 import '../assets/scss/inbox.scss'
 import { getInboxTasks } from '../api/taskAPI'
-import TaskList from './TaskList'
-import AddTask from './AddTask'
-import InfinityScroll from './InfinityScroll'
-import TaskListMenu from './TaskListMenu'
+import TaskList from '../components/TaskList'
+import AddTask from '../components/AddTask'
+import InfinityScroll from '../components/InfinityScroll'
+import TaskListMenu from '../components/TaskListMenu'
 import InboxIcon from '../assets/icons/InboxIcon'
 const Inbox = () => {
   const queryKey = ['tasks', { type: 'inbox' }]
