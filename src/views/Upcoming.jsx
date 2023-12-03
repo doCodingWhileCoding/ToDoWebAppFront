@@ -7,7 +7,7 @@ import CalendarIcon from '../assets/icons/CalendarIcon'
 const Upcoming = () => {
   const queryKey = ['tasks', { type: 'upcoming' }]
   const {
-    isLoading,
+    isPending,
     data: tasks,
     isError,
     error,
@@ -16,7 +16,7 @@ const Upcoming = () => {
     queryKey: queryKey,
     queryFn: getUpcomingTasks,
   })
-  if (isLoading) {
+  if (isPending) {
     return <div>Loading...</div>
   } else if (isError) {
     return <div>Error: {error.response.data}</div>

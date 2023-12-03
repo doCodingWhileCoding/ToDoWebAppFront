@@ -12,7 +12,7 @@ const TaskStepList = (props) => {
   const queryKey = ['taskSteps', { taskId }]
   const queryClient = useQueryClient()
   const {
-    isLoading,
+    isPending,
     data: taskSteps,
     isError,
     error,
@@ -44,7 +44,7 @@ const TaskStepList = (props) => {
     }
     updateTaskStepPositionMutation.mutate({ taskId: taskId, taskStepId: results.draggableId, data: data })
   }
-  if (isLoading) {
+  if (isPending) {
     return <div>Loading...</div>
   } else if (isError) {
     return <div>Error: {error.response.data}</div>

@@ -23,7 +23,7 @@ const SettingsModal = () => {
     }
   }, [setShowSettingsModal])
   const {
-    isLoading,
+    isPending,
     data: userData,
     isError,
     error,
@@ -91,7 +91,7 @@ const SettingsModal = () => {
         animate="visible"
         exit="exit"
       >
-        {isLoading && <LoadingAnimationDots />}
+        {isPending && <LoadingAnimationDots />}
         {isSuccess && (
           <div className="success">
             <div className="email">
