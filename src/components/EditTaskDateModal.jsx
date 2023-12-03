@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
 import { updateTask } from '../api/taskAPI'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { isToday, parseISO, startOfDay, startOfToday } from 'date-fns'
-import { formatInTimeZone, utcToZonedTime } from 'date-fns-tz'
+import { utcToZonedTime } from 'date-fns-tz'
 import classNames from 'classnames'
 
 const EditTaskDateModal = () => {
@@ -45,12 +45,6 @@ const EditTaskDateModal = () => {
   })
   const updateDate = () => {
     if (selectedDay === null) return
-    //const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
-    //const day = startOfDay(selectedDay)
-    //const formattedDay = formatInTimeZone(day, timeZone, 'yyyy-MM-dd HH:mm:ssXXX')
-    //console.log(utcToZonedTime(startOfDay(selectedDay), 'Europe/Madrid'))
-    console.log(selectedDay.toISOString())
-    console.log(utcToZonedTime(startOfDay(selectedDay), 'Europe/Madrid').toISOString())
     const data = {
       date: utcToZonedTime(startOfDay(selectedDay), 'Europe/Madrid').toISOString(),
     }
