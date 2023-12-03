@@ -25,12 +25,10 @@ const Login = () => {
   const loginMutation = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      console.log(data)
       setToken(data)
       navigate('/')
     },
     onError: (error) => {
-      console.log(error)
       if (error.response.data.errMsg === errorMessages.EMAIL_NOT_VERIFIED) {
         setUserId(error.response.data.userId)
         setServerError('Debes verificar tu email para poder iniciar sesión')
@@ -44,7 +42,6 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: zodResolver(loginSchema),
   })
@@ -54,7 +51,6 @@ const Login = () => {
       password: formData.password,
     }
     loginMutation.mutate(data)
-    //reset()
   }
   return (
     <div className="Login">

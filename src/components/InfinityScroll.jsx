@@ -18,8 +18,6 @@ const InfinityScroll = ({ children, queryKey, fetchFunction }) => {
 
   const lastDocRef = useRef(null)
   const handleObserver = async (entities) => {
-    console.log(lastDocRef.current)
-    console.log(entities[0])
     const target = entities[0]
     if (target.isIntersecting) {
       fetchNextPage()

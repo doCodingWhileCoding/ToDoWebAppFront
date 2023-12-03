@@ -37,7 +37,6 @@ const CustomDatePicker = (props) => {
     )
   }, [startOfMonthDate, endOfMonthDate])
   const handleNextMonth = () => {
-    console.log('entra')
     setStartOfMonthDate(addMonths(startOfMonthDate, 1))
     setEndOfMonthDate(addMonths(endOfMonthDate, 1))
   }

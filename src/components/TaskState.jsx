@@ -10,7 +10,6 @@ const TaskState = (props) => {
   const updateTaskMutation = useMutation({
     mutationFn: updateTaskIsCompleted,
     onSuccess: () => {
-      console.log(isCompleting)
       queryClient.invalidateQueries({
         queryKey: ['tasks'],
       })
@@ -20,7 +19,6 @@ const TaskState = (props) => {
     const data = {
       isCompleted: !isCompleted,
     }
-    console.log(!isCompleted)
     setIsCompleting(true)
     updateTaskMutation.mutate({ taskId: taskId, data: data })
   }

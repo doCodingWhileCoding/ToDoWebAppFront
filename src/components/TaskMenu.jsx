@@ -17,7 +17,6 @@ const TaskMenu = (props) => {
   useEffect(() => {
     setEditTaskDateModalData(taskId, queryKey, date)
   })
-  console.log(hasSteps)
   return (
     <motion.div className="TaskMenu">
       <motion.div className="TaskMenu_Add">

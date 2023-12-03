@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signUpSchema } from '../../schemas/auth.schemas'
 import { Link } from 'react-router-dom'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { signUp } from '../../api/authAPI'
 import classNames from 'classnames'
 import VisibilityIcon from '../../assets/icons/VisibilityIcon'
@@ -15,18 +15,11 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
   const signUpMutation = useMutation({
     mutationFn: signUp,
-    onSuccess: (data) => {
-      console.log(data)
-    },
-    onError: (error) => {
-      console.log(error)
-    },
   })
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: zodResolver(signUpSchema),
   })
@@ -36,7 +29,6 @@ const SignUp = () => {
       password: formData.password,
     }
     signUpMutation.mutate(data)
-    //reset()
   }
   return (
     <div className="SignUp">

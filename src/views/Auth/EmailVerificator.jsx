@@ -11,11 +11,7 @@ const EmailVerificator = () => {
   const [resendEmailError, setResendEmailError] = useState('')
   const verifyEmailMutation = useMutation({
     mutationFn: verifyEmail,
-    onSuccess: () => {
-      console.log('verificado')
-    },
     onError: (error) => {
-      console.log(error)
       if (error.response.data.errMsg === errorMessages.TOKEN_EXPIRED) {
         setTokenExpired(true)
       }

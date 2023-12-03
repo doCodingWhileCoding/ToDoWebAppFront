@@ -75,7 +75,6 @@ const SettingsModal = () => {
       },
     },
   }
-  console.log(userData)
   return (
     <motion.div
       className="SettingsModal"

@@ -31,7 +31,6 @@ const EditTaskDateModal = () => {
   }, [setShowEditTaskDateModal])
   const [selectedDay, setSelectedDay] = useState()
   useEffect(() => {
-    console.log(date)
     setSelectedDay(parseISO(date))
   }, [date])
   const queryClient = useQueryClient()
