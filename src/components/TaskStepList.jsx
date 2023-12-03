@@ -1,25 +1,14 @@
 import '../assets/scss/tasksteplist.scss'
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { getTaskSteps, updateTaskStepPosition } from '../api/taskStepAPI'
 import TaskStep from './TaskStep'
-import { AnimatePresence, LayoutGroup, Reorder, motion } from 'framer-motion'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+import { AnimatePresence, motion } from 'framer-motion'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
 const TaskStepList = (props) => {
   const { taskId, setHasSteps } = props
-  const prueba = [
-    { title: 1 },
-    { title: 2 },
-    { title: 3 },
-    { title: 4 },
-    { title: 5 },
-    { title: 6 },
-    { title: 7 },
-    { title: 8 },
-    { title: 9 },
-  ]
   const queryKey = ['taskSteps', { taskId }]
   const queryClient = useQueryClient()
   const {
@@ -27,7 +16,6 @@ const TaskStepList = (props) => {
     data: taskSteps,
     isError,
     error,
-    isSuccess,
   } = useQuery({
     queryKey: queryKey,
     queryFn: () => getTaskSteps(taskId),
@@ -51,8 +39,6 @@ const TaskStepList = (props) => {
     },
   })
   const handleDragAndDrop = (results) => {
-    console.log(results)
-    console.log(taskId)
     const data = {
       position: results.destination.index,
     }
@@ -81,7 +67,6 @@ const TaskStepList = (props) => {
                   queryKey={queryKey}
                   index={index}
                 />
-                // <div key={taskStep._id}>{taskStep.title}</div>
               ))}
             </AnimatePresence>
             {provided.placeholder}
