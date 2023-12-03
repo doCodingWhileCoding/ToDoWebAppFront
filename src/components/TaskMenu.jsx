@@ -5,9 +5,8 @@ import AddTaskTag from './AddTaskTag'
 import AddTaskStep from './AddTaskStep'
 import AddTaskDueDate from './AddTaskDueDate'
 import EditTaskDate from './EditTaskDate'
-import EditTaskDateModal from './EditTaskDateModal'
 import { useEditTaskDateModalStore } from '../store/app.store'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 import { parseISO } from 'date-fns'
 
@@ -22,15 +21,15 @@ const TaskMenu = (props) => {
   return (
     <motion.div className="TaskMenu">
       <motion.div className="TaskMenu_Add">
-        <motion.div className="tag">Tag</motion.div>
+        {/* <motion.div className="tag">Tag</motion.div> */}
         {date && <EditTaskDate date={parseISO(date)} />}
-        <motion.div className="dueDtae">vie, 1 dic quedan 23 días sdf ffg sdg r</motion.div>
+        {/* <motion.div className="dueDate">vie, 1 dic quedan 23 días sdf ffg sdg r</motion.div> */}
       </motion.div>
       <motion.div className="TaskMenu_Edit">
         {!date && <AddTaskDate />}
-        <AddTaskTag />
+        {/* <AddTaskTag /> */}
         {!hasSteps && <AddTaskStep taskId={taskId} />}
-        <AddTaskDueDate />
+        {/* <AddTaskDueDate /> */}
       </motion.div>
     </motion.div>
   )
