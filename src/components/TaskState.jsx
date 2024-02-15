@@ -1,4 +1,3 @@
-import '../assets/scss/taskstate.scss'
 import PropTypes from 'prop-types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateTaskIsCompleted } from '../api/taskAPI'
@@ -23,9 +22,15 @@ const TaskState = (props) => {
     updateTaskMutation.mutate({ taskId: taskId, data: data })
   }
   return (
-    <div className="TaskState" onClick={() => handleCheck()}>
-      {isCompleted !== isCompleting && <CheckIcon />}
-      {isCompleted === isCompleting && <div></div>}
+    <div
+      className="TaskState h-[24px] w-[24px] flex items-center justify-center border-2 border-slate-300 rounded-full cursor-pointer"
+      onClick={() => handleCheck()}
+    >
+      {isCompleted !== isCompleting && (
+        <div className="w-fit h-fit text-slate-300">
+          <CheckIcon />
+        </div>
+      )}
     </div>
   )
 }

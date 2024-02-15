@@ -1,4 +1,3 @@
-import '../../assets/scss/login.scss'
 import { useState } from 'react'
 import VisibilityIcon from '../../assets/icons/VisibilityIcon'
 import VisibilityOffIcon from '../../assets/icons/VisibilityOffIcon'
@@ -53,41 +52,64 @@ const Login = () => {
     loginMutation.mutate(data)
   }
   return (
-    <div className="Login">
-      <div className="Login_Content">
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <div className="email">
-            <div className="input">
-              <input {...register('email')} type="email" placeholder="Email" name="email" />
+    <div className="Login w-full h-full flex justify-center items-center bg-white">
+      <div className="Login_Content w-1/3 rounded-3xl p-10 flex flex-col justify-center items-center gap-5 bg-gray-300">
+        <form className="w-full flex flex-col items-center gap-2" onSubmit={handleSubmit(onSubmit)} noValidate>
+          <div className="email w-full flex flex-col gap-2">
+            <div className="input flex flex-row items-center bg-white p-2 rounded">
+              <input
+                className="border-none outline-none text-xl font-semibold w-full bg-transparent text-black autofill:shadow-[0_0px_0px_1000px_rgba(255,255,255)_inset] caret-black"
+                {...register('email')}
+                type="email"
+                placeholder="Email"
+                name="email"
+              />
             </div>
-            <div className="error">
+            <div className="error h-5 text-red-500">
               <p>{errors.email?.message}</p>
             </div>
           </div>
-          <div className="password">
-            <div className="input">
+          <div className="password w-full flex flex-col gap-2">
+            <div className="input flex flex-row items-center bg-white p-2 rounded">
               <input
+                className="border-none outline-none text-xl font-semibold w-full bg-transparent text-black autofill:shadow-[0_0px_0px_1000px_rgba(255,255,255)_inset] caret-black"
                 {...register('password')}
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Contraseña"
               ></input>
-              <div className="visibility" onClick={() => setShowPassword(!showPassword)}>
+              <div
+                className="visibility cursor-pointer flex justify-center items-center"
+                onClick={() => setShowPassword(!showPassword)}
+              >
                 {showPassword && <VisibilityIcon />}
                 {!showPassword && <VisibilityOffIcon />}
               </div>
             </div>
-            <div className="error">
+            <div className="error h-5 text-red-500">
               <p>{errors.password?.message}</p>
             </div>
           </div>
-          <button disabled={loginMutation.isPending} className={classNames({ isSubmitting: loginMutation.isPending })}>
+          <button
+            disabled={loginMutation.isPending}
+            className={classNames(
+              'w-1/2 p-2 rounded border-none outline-none font-semibold text-xl bg-white text-black mt-5 cursor-pointer flex justify-center items-center',
+              { 'opacity-80 cursor-not-allowed': loginMutation.isPending }
+            )}
+          >
             {!loginMutation.isPending && <p>Login</p>}
-            {loginMutation.isPending && <AnimatedSpinnerIcon />}
+            {loginMutation.isPending && (
+              <div className="text-black">
+                <AnimatedSpinnerIcon />
+              </div>
+            )}
           </button>
         </form>
-        {serverError && <div className="serverError">{serverError}</div>}
+        {serverError && <div className="serverError text-red-500">{serverError}</div>}
         {showResendEmailVerificationEmail && <ResendEmailVerificationEmail userId={userId} />}
-        <div className="signup">
+        <div className="forgotPassword flex flex-col justify-center items-center text-black">
+          <Link to="/auth/forgotPassword">He olvidado mi contraseña</Link>
+        </div>
+        <div className="signup flex flex-col justify-center items-center text-black">
           <p>¿No tienes cuenta?</p>
           <Link to="/auth/signup">Regístrate</Link>
         </div>

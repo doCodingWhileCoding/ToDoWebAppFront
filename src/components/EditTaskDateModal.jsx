@@ -1,4 +1,3 @@
-import '../assets/scss/edittaskdatemodal.scss'
 import { useEffect, useRef, useState } from 'react'
 import { useEditTaskDateModalStore } from '../store/app.store'
 import CustomDatePicker from './CustomDatePicker'
@@ -100,7 +99,7 @@ const EditTaskDateModal = () => {
   }
   return (
     <motion.div
-      className="EditTaskDateModal"
+      className="EditTaskDateModal taskClickOutsideException fixed top-0 left-0 z-30 w-full h-full bg-[#0000004d] backdrop-blur-sm flex justify-center items-center"
       variants={EditTaskDateModalVariants}
       initial="hidden"
       animate="visible"
@@ -108,15 +107,16 @@ const EditTaskDateModal = () => {
     >
       <motion.div
         ref={ref}
-        className="EditTaskDateModal_Container"
+        className="EditTaskDateModal_Container taskClickOutsideException bg-white dark:bg-zinc-950 relative w-1/5 min-w-[390px] p-5 rounded-2xl font-semibold text-center flex flex-col gap-5"
         variants={EditTaskDateModalContainerVariants}
         initial="hidden"
         animate="visible"
         exit="exit"
       >
-        <div className="Header">
-          <h1>{'¿Cuando?'}</h1>
+        <div className="Header taskClickOutsideException flex flex-row justify-center items-center relative">
+          <h1 className="taskClickOutsideException text-black dark:text-white text-2xl">{'¿Cuando?'}</h1>
           <p
+            className="taskClickOutsideException text-black dark:text-white absolute right-0 cursor-pointer"
             onClick={() => {
               setShowEditTaskDateModal(false)
             }}
@@ -125,28 +125,41 @@ const EditTaskDateModal = () => {
           </p>
         </div>
         <div
-          className={classNames({
-            Today: true,
-            isToday: isToday(selectedDay),
-          })}
+          className={classNames(
+            'Today taskClickOutsideException flex flex-row items-center gap-1 cursor-pointer rounded-md p-1',
+            {
+              'bg-gray-300 dark:bg-zinc-800': isToday(selectedDay),
+            }
+          )}
           onClick={() => setSelectedDay(startOfToday())}
         >
-          <StarIcon />
-          <p>{'Hoy'}</p>
+          <div className="text-yellow-400">
+            <StarIcon />
+          </div>
+          <p className="text-black dark:text-white">{'Hoy'}</p>
         </div>
         <CustomDatePicker selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
-        <div className="SomeDay">
-          <InventoryIcon />
-          <p>{'Algún día'}</p>
+        <div className="SomeDay taskClickOutsideException flex flex-row items-center gap-1 cursor-pointer">
+          <div className="text-amber-200">
+            <InventoryIcon />
+          </div>
+
+          <p className="text-black dark:text-white">{'Algún día'}</p>
         </div>
-        <div className="Actions">
+        <div className="Actions taskClickOutsideException flex flex-row gap-2 w-full">
           {date !== null && (
-            <div className="Actions_Delete" onClick={deleteDate}>
+            <div
+              className="Actions_Delete w-full py-2 px-10 text-xl rounded cursor-pointer bg-red-500"
+              onClick={deleteDate}
+            >
               {'Borrar'}
             </div>
           )}
           {selectedDay !== null && (
-            <div className="Actions_Apply" onClick={updateDate}>
+            <div
+              className="Actions_Apply w-full py-2 px-10 text-xl rounded cursor-pointer bg-gray-300"
+              onClick={updateDate}
+            >
               {'Ok'}
             </div>
           )}

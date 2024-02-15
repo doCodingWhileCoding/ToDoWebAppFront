@@ -33,3 +33,17 @@ export const signUpSchema = z
     message: 'La contraseña no coincide',
     path: ['confirmPassword'],
   })
+
+export const resetPasswordSchema = z
+  .object({
+    password: UserPasswordSchema,
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'La contraseña no coincide',
+    path: ['confirmPassword'],
+  })
+
+export const forgotPasswordSchema = z.object({
+  email: UserEmailSchema,
+})

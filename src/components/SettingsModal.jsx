@@ -77,14 +77,14 @@ const SettingsModal = () => {
   }
   return (
     <motion.div
-      className="SettingsModal"
+      className="SettingsModal fixed top-0 left-0 z-30 w-full h-full bg-[#0000004d] backdrop-blur-sm flex justify-center items-center"
       variants={SettingsModalVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
     >
       <motion.div
-        className="SettingsModal_Container"
+        className="SettingsModal_Container relative w-1/5 h-2/3 p-5 bg-white text-black dark:bg-black dark:text-white rounded-2xl font-semibold text-center flex flex-col justify-center items-center gap-5"
         ref={ref}
         ariants={SettingsModalContainerVariants}
         initial="hidden"
@@ -92,14 +92,20 @@ const SettingsModal = () => {
         exit="exit"
       >
         {isPending && <LoadingAnimationDots />}
+        {isError && <div className="error">Parece que algo no ha ido cómo debía</div>}
         {isSuccess && (
-          <div className="success">
-            <div className="email">
+          <div className="success w-full flex flex-col gap-4">
+            <div className="email w-full flex flex-col gap-1">
               <p>Email:</p>
               <p>{userData.email}</p>
             </div>
-            <div className="logOut">
-              <button onClick={logOut}>Cerrar sesión</button>
+            <div className="logOut w-full flex justify-center items-center">
+              <button
+                className="w-1/2 p-2 rounded border-none outline-none font-semibold text-xl bg-gray-300 text-black cursor-pointer flex justify-center items-center"
+                onClick={logOut}
+              >
+                Cerrar sesión
+              </button>
             </div>
           </div>
         )}

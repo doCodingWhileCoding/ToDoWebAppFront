@@ -1,25 +1,6 @@
-import '../assets/scss/upcomingdatelist.scss'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import {
-  eachDayOfInterval,
-  format,
-  startOfToday,
-  startOfMonth,
-  endOfMonth,
-  endOfWeek,
-  startOfWeek,
-  addMonths,
-  isSameMonth,
-  isToday,
-  subMonths,
-  isEqual,
-  isBefore,
-  isSameDay,
-  addDays,
-  startOfTomorrow,
-  eachMonthOfInterval,
-} from 'date-fns'
+import { eachDayOfInterval, endOfMonth, addMonths, addDays, startOfTomorrow, eachMonthOfInterval } from 'date-fns'
 import UpcomingDate from './UpcomingDate'
 const UpcomingDateList = (props) => {
   const { tasks } = props
@@ -39,7 +20,7 @@ const UpcomingDateList = (props) => {
   )
 
   return (
-    <div className="UpcomingDateList">
+    <div className="UpcomingDateList w-full h-full flex flex-col overflow-y-scroll">
       {days.map((day, i) => (
         <UpcomingDate key={day} tasks={tasks} startDate={day} endDate={day} />
       ))}

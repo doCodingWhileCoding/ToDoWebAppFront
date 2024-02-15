@@ -1,4 +1,3 @@
-import '../assets/scss/deletetask.scss'
 import PropTypes from 'prop-types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { deleteTask } from '../api/taskAPI'
@@ -26,7 +25,7 @@ const DeleteTask = (props) => {
     deleteTaskMutation.mutate(taskId)
   }
   return (
-    <div className="DeleteTask" onClick={handleClick}>
+    <div className="DeleteTask flex items-center justify-center cursor-pointer text-red-500" onClick={handleClick}>
       <DeleteIcon />
     </div>
   )

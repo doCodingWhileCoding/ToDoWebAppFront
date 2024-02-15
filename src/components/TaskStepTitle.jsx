@@ -1,4 +1,3 @@
-import '../assets/scss/tasksteptitle.scss'
 import PropTypes from 'prop-types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateTaskStep, createTaskStep, deleteTaskStep } from '../api/taskStepAPI'
@@ -11,7 +10,15 @@ const TaskStepTitle = (props) => {
   const focusedTaskStepId = useTaskStepStore((state) => state.focusedTaskStepId)
   const setFocusedTaskStepId = useTaskStepStore((state) => state.setFocusedTaskStepId)
 
-  const input = useRef(null)
+  const textAreaRef = useRef(null)
+  useEffect(() => {
+    console.log(textAreaRef)
+    if (textAreaRef && textAreaRef.current) {
+      console.log('entra')
+      textAreaRef.current.style.height = '28px'
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
+    }
+  }, [textAreaRef])
   const queryClient = useQueryClient()
   const updateTaskStepMutation = useMutation({
     mutationFn: updateTaskStep,
@@ -43,7 +50,8 @@ const TaskStepTitle = (props) => {
     },
   })
   const handleChange = (e) => {
-    e.preventDefault()
+    textAreaRef.current.style.height = '28px'
+    textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
     const data = {
       title: e.target.value,
     }
@@ -64,7 +72,12 @@ const TaskStepTitle = (props) => {
   }
 
   useEffect(() => {
-    if (isEditMode) input.current.focus()
+    if (isEditMode) {
+      textAreaRef.current.focus()
+      textAreaRef.current.style.height = '28px'
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
+      textAreaRef.current.setSelectionRange(textAreaRef.current.value.length, textAreaRef.current.value.length)
+    }
   }, [isEditMode])
 
   useEffect(() => {
@@ -76,14 +89,30 @@ const TaskStepTitle = (props) => {
   }, [focusedTaskStepId])
   return (
     <div
-      className={classNames({
-        TaskStepTitle: true,
-        isCompleted: isCompleted,
-        isEditMode: isEditMode,
-      })}
+      className={classNames(
+        'TaskStepTitle w-full h-full text-lg text-black dark:text-white font-semibold flex items-center cursor-pointer overflow-x-hidden',
+        {
+          'text-zinc-500 dark:text-zinc-500': isCompleted,
+          isEditMode: isEditMode,
+        }
+      )}
     >
-      {!isEditMode && <div>{title}</div>}
-      {isEditMode && <input ref={input} type="text" value={title} onChange={handleChange} onKeyDown={handleKeyDown} />}
+      {!isEditMode && <div className="overflow-x-hidden min-h-[28px] break-words">{title}</div>}
+      {isEditMode && (
+        <textarea
+          className={classNames(
+            'w-full border-none outline-none resize-none min-h-[28px] text-lg text-black dark:text-white font-semibold bg-transparent overflow-y-hidden',
+            {
+              'text-zinc-500 dark:text-zinc-500': isCompleted,
+              isEditMode: isEditMode,
+            }
+          )}
+          ref={textAreaRef}
+          value={title}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        ></textarea>
+      )}
     </div>
   )
 }

@@ -1,4 +1,3 @@
-import '../assets/scss/upcoming.scss'
 import { getUpcomingTasks } from '../api/taskAPI'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import UpcomingDateList from '../components/UpcomingDateList'
@@ -22,8 +21,8 @@ const Upcoming = () => {
     return <div>Error: {error.response.data}</div>
   }
   return (
-    <div className="Upcoming">
-      <TaskListMenu isCustomList={false} title={'Programadas'} Icon={CalendarIcon} />
+    <div className="Upcoming h-full w-full relative flex flex-col items-center gap-10 px-40 py-16">
+      <TaskListMenu isCustomList={false} title={'Programadas'} Icon={CalendarIcon} IconClassColor="text-red-600" />
       <UpcomingDateList tasks={tasks} />
     </div>
   )

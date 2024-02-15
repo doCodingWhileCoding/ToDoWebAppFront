@@ -1,4 +1,3 @@
-import '../assets/scss/errorpopup.scss'
 import { useEffect, useRef } from 'react'
 import { usePopUpStore } from '../store/app.store'
 import UnknownError from './Errors/UnknownError'
@@ -21,8 +20,11 @@ const ErrorPopUp = () => {
     }
   }, [setShowErrorPopUp])
   return (
-    <div className="ErrorPopUp">
-      <div ref={ref} className="ErrorPopUp_Container">
+    <div className="ErrorPopUp fixed top-0 left-0 z-30 w-full h-full bg-[#00000099] backdrop-blur-sm flex justify-center items-center">
+      <div
+        ref={ref}
+        className="ErrorPopUp_Container relative w-2/5 h-2/3 bg-gray-300 dark:bg-black text-black dark:text-white rounded-2xl font-semibold text-center"
+      >
         {selectedErrorPopUp === 'unknown' && <UnknownError setShowErrorPopUp={setShowErrorPopUp} />}
         {selectedErrorPopUp === 'duplicated_task' && <DuplicatedTaskError setShowErrorPopUp={setShowErrorPopUp} />}
       </div>

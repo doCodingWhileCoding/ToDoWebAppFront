@@ -1,4 +1,3 @@
-import '../assets/scss/taskstepstate.scss'
 import PropTypes from 'prop-types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateTaskStep } from '../api/taskStepAPI'
@@ -25,9 +24,17 @@ const TaskStepState = (props) => {
     updateTaskStepMutation.mutate({ taskId: taskId, taskStepId: taskStepId, data: data })
   }
   return (
-    <motion.div className="TaskStepState" onClick={() => handleCheck()}>
-      {isCompleted && <CheckIcon />}
-      {!isCompleted && <CircleIcon />}
+    <motion.div className="TaskStepState flex justify-center" onClick={() => handleCheck()}>
+      {isCompleted && (
+        <div className="w-fit h-fit text-zinc-500">
+          <CheckIcon width={28} height={28} />
+        </div>
+      )}
+      {!isCompleted && (
+        <div className="w-fit h-fit text-blue-500">
+          <CircleIcon width={28} height={28} />
+        </div>
+      )}
     </motion.div>
   )
 }

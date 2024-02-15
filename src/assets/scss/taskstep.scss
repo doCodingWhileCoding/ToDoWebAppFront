@@ -1,29 +1,9 @@
 @import 'variables.scss';
 .TaskStep {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 5px;
-  width: 100%;
-  border-top: 1px solid $septenary-color;
-  padding: 10px;
-  color: $secondary-color;
-  &:last-child {
-    border-bottom: 1px solid $septenary-color;
-  }
-  input {
-    color: $secondary-color;
-  }
-  svg {
-    fill: $secondary-color;
-  }
-  &.isEditMode {
-    background-color: $nonary-color;
-    border-radius: 5px;
-    border-top: none;
-    border-bottom: none;
+  &.isEditMode,
+  &.isDragging {
     & + div {
-      border-top: none;
+      @apply border-t-white dark:border-t-zinc-800;
     }
   }
 }

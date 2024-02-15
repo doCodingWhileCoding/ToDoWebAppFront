@@ -8,6 +8,8 @@ import LogBook from '../views/LogBook'
 import Login from '../views/Auth/Login'
 import SignUp from '../views/Auth/SignUp'
 import EmailVerificator from '../views/Auth/EmailVerificator'
+import ForgotPassword from '../views/Auth/ForgotPassword'
+import ResetPassword from '../views/Auth/ResetPassword'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,8 @@ const router = createBrowserRouter([
     children: [
       { path: 'login', element: <Login /> },
       { path: 'signup', element: <SignUp /> },
+      { path: 'forgotPassword', element: <ForgotPassword /> },
+      { path: 'resetPassword/:userId/:uuid', element: <ResetPassword /> },
       { path: 'emailVerification/:userId/:uuid', element: <EmailVerificator /> },
     ],
   },

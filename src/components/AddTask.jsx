@@ -1,4 +1,3 @@
-import '../assets/scss/addtask.scss'
 import PropTypes from 'prop-types'
 import { useState, useRef } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -40,9 +39,17 @@ const AddTask = (props) => {
     }
   }
   return (
-    <div className="AddTask">
-      <div className="AddTask_Container">
-        <input ref={textInput} type="text" name="title" id="title" onChange={handleChange} onKeyDown={handleKeyDown} />
+    <div className="AddTask z-10 bottom-0 w-full h-40 flex justify-center items-center bg-white dark:bg-zinc-900">
+      <div className="AddTask_Container w-full h-2/3 bg-gray-100 dark:bg-zinc-950 border-2 border-gray-400 rounded-md pl-2">
+        <input
+          className="text-lg font-semibold flex justify-center border-none outline-none w-full h-full bg-transparent  text-black dark:text-white"
+          ref={textInput}
+          type="text"
+          name="title"
+          id="title"
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
       </div>
     </div>
   )

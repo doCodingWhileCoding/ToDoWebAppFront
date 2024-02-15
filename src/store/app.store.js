@@ -36,6 +36,10 @@ export const useTaskStore = create((set) => ({
     })),
   scrollToTop: false,
   setScrollToTop: (value) => set(() => ({ scrollToTop: value })),
+  showOverlay: false,
+  overlayExceptionTaskId: null,
+  setOverlayExceptionTaskId: (taskId) =>
+    set((state) => ({ ...state, overlayExceptionTaskId: taskId, showOverlay: !!taskId })),
 }))
 export const useTaskStepStore = create((set) => ({
   focusedTaskStepId: '',

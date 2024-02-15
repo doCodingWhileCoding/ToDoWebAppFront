@@ -1,4 +1,3 @@
-import '../assets/scss/tasknotes.scss'
 import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -35,7 +34,7 @@ const TaskNotes = (props) => {
 
   return (
     <motion.textarea
-      className="TaskNotes"
+      className="TaskNotes w-full border-none outline-none resize-none text-lg font-semibold text-zinc-700 bg-transparent"
       value={note == null ? '' : note}
       placeholder="Notas"
       ref={textAreaRef}

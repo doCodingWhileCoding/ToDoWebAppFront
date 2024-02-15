@@ -3,5 +3,6 @@ const errorMessages = {
   INVALID_LOGIN: 'INVALID_LOGIN',
   TOO_MANY_REQUESTS: 'TOO_MANY_REQUESTS',
   TOKEN_EXPIRED: 'TOKEN_EXPIRED',
+  EMAIL_EXISTS: 'EMAIL_EXISTS',
 }
 export default errorMessages

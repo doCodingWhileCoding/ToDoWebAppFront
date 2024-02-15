@@ -1,4 +1,3 @@
-import '../assets/scss/infinityscroll.scss'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 import { useEffect, useRef, useState } from 'react'
@@ -12,13 +11,18 @@ const InfinityScroll = ({ children, queryKey, fetchFunction }) => {
     },
   })
   const [docs, setDocs] = useState([])
+  const [totalDocs, setTotalDocs] = useState(0)
   useEffect(() => {
-    if (data) setDocs(data.pages.flatMap((page) => page.docs))
+    if (data) {
+      setTotalDocs(data.pages[0].totalDocs)
+      setDocs(data.pages.flatMap((page) => page.docs))
+    }
   }, [data])
 
   const lastDocRef = useRef(null)
   const handleObserver = async (entities) => {
     const target = entities[0]
+
     if (target.isIntersecting) {
       fetchNextPage()
     }
@@ -37,14 +41,18 @@ const InfinityScroll = ({ children, queryKey, fetchFunction }) => {
         observer.unobserve(lastDocRef.current)
       }
     }
-  }, [docs])
+  }, [docs, lastDocRef])
 
   if (isPending) {
     return <div>Loading...</div>
   } else if (isError) {
     return <div>Error: {error.response.data}</div>
   }
-  return <div className="InfinityScroll">{children(docs, lastDocRef, setDocs)}</div>
+  return (
+    <div className="InfinityScroll w-full h-full overflow-y-scroll">
+      {children(docs, totalDocs, lastDocRef, setDocs)}
+    </div>
+  )
 }
 InfinityScroll.propTypes = {
   LoadingComponent: PropTypes.elementType,

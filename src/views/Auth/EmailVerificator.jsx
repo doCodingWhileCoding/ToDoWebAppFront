@@ -1,10 +1,12 @@
-import '../../assets/scss/emailverificator.scss'
 import { useParams } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { verifyEmail, resendEmailVerificationEmail } from '../../api/authAPI'
 import { useEffect, useState } from 'react'
 import errorMessages from '../../constants/error_messages'
 import { Link } from 'react-router-dom'
+import classNames from 'classnames'
+import AnimatedSpinnerIcon from '../../assets/icons/AnimatedSpinnerIcon'
+
 const EmailVerificator = () => {
   const { userId, uuid } = useParams()
   const [tokenExpired, setTokenExpired] = useState(false)
@@ -34,26 +36,39 @@ const EmailVerificator = () => {
     verifyEmailMutation.mutate(data)
   }, [])
   return (
-    <div className="EmailVerificator">
-      <div className="EmailVerificator_Content">
+    <div className="EmailVerificator w-full h-full flex justify-center items-center bg-white text-black">
+      <div className="EmailVerificator_Content w-1/3 bg-gray-300 rounded-2xl p-10 flex justify-center items-center">
         {verifyEmailMutation.isPending && <div className="Loading">Cargando...</div>}
         {verifyEmailMutation.isSuccess && (
-          <div className="Success">
+          <div className="Success w-full flex flex-col items-center gap-2">
             <p>Email verficado correctamente</p>
-            <Link to="/auth/login">Ir al login</Link>
+            <div className="w-1/2 bg-white rounded p-2 flex justify-center items-center text-xl font-semibold text-black">
+              <Link to="/auth/login">Ir al login</Link>
+            </div>
           </div>
         )}
         {verifyEmailMutation.isError && (
           <div className="Error">
             {tokenExpired && (
-              <div className="TokenExpired">
+              <div className="TokenExpired flex flex-col justify-center items-center gap-5">
                 <p>Ups.. parece que este enlace a caducado</p>
-                <button onClick={() => resendEmailVerificationEmailMutation.mutate(userId)}>
-                  Solicitar nuevo enlace
+                <button
+                  className={classNames(
+                    'w-1/2 p-2 rounded border-none outline-none font-semibold text-xl bg-white text-black mt-5 cursor-pointer flex justify-center items-center',
+                    { 'opacity-80 cursor-not-allowed': resendEmailVerificationEmailMutation.isPending }
+                  )}
+                  onClick={() => resendEmailVerificationEmailMutation.mutate(userId)}
+                >
+                  {!resendEmailVerificationEmailMutation.isPending && <p>Solicitar nuevo enlace</p>}
+                  {resendEmailVerificationEmailMutation.isPending && (
+                    <div className="text-black">
+                      <AnimatedSpinnerIcon />
+                    </div>
+                  )}
                 </button>
-                {resendEmailError && <div className="resendEmailError">{resendEmailError}</div>}
+                {resendEmailError && <div className="resendEmailError text-red-500">{resendEmailError}</div>}
                 {resendEmailVerificationEmailMutation.isSuccess && (
-                  <div className="resendEmailSuccess">Se ha enviado un nuevo enlace a su email</div>
+                  <div className="resendEmailSuccess text-black">Se ha enviado un nuevo enlace a su email</div>
                 )}
               </div>
             )}

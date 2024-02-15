@@ -6,9 +6,8 @@ const AddTaskDate = () => {
 
   return (
     <div
-      className="AddTaskDate"
+      className="AddTaskDate flex justify-center items-center text-gray-400 cursor-pointer"
       onClick={() => setShowEditTaskDateModal(true)}
-      style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
     >
       <CalendarIcon />
     </div>

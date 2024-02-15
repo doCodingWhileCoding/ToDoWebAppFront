@@ -28,11 +28,7 @@ const AddTaskStep = (props) => {
   }
 
   return (
-    <div
-      className="AddTaskStep"
-      onClick={handleClick}
-      style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-    >
+    <div className="AddTaskStep flex justify-center items-center text-gray-400 cursor-pointer" onClick={handleClick}>
       <ListIcon />
     </div>
   )

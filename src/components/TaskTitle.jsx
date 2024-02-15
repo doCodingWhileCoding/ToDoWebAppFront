@@ -1,4 +1,3 @@
-import '../assets/scss/tasktitle.scss'
 import PropTypes from 'prop-types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateTask } from '../api/taskAPI'
@@ -73,10 +72,23 @@ const TaskTitle = (props) => {
     }
   }, [isPresent])
   return (
-    <motion.div className="TaskTitle">
-      <motion.div animate={controls} variants={TaskTitleStrokevariants} className="TaskTitle_Stroke"></motion.div>
+    <motion.div className="TaskTitle relative w-full cursor-pointer text-xl font-semibold text-black dark:text-white">
+      <motion.div
+        animate={controls}
+        variants={TaskTitleStrokevariants}
+        className="TaskTitle_Stroke absolute top-1/2 rounded-xl h-1 bg-slate-300"
+      ></motion.div>
       {!isEditMode && <div>{title}</div>}
-      {isEditMode && <input ref={input} type="text" value={title} onChange={handleChange} onKeyDown={handleKeyDown} />}
+      {isEditMode && (
+        <input
+          className="text-black dark:text-white w-full text-xl font-semibold border-none outline-none bg-transparent"
+          ref={input}
+          type="text"
+          value={title}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+      )}
     </motion.div>
   )
 }

@@ -1,4 +1,3 @@
-import '../assets/scss/taskmenu.scss'
 import PropTypes from 'prop-types'
 import AddTaskDate from './AddTaskDate'
 import AddTaskTag from './AddTaskTag'
@@ -18,13 +17,13 @@ const TaskMenu = (props) => {
     setEditTaskDateModalData(taskId, queryKey, date)
   })
   return (
-    <motion.div className="TaskMenu">
-      <motion.div className="TaskMenu_Add">
+    <motion.div className="TaskMenu w-full flex flex-row gap-4">
+      <motion.div className="TaskMenu_Add flex flex-col flex-1">
         {/* <motion.div className="tag">Tag</motion.div> */}
         {date && <EditTaskDate date={parseISO(date)} />}
         {/* <motion.div className="dueDate">vie, 1 dic quedan 23 días sdf ffg sdg r</motion.div> */}
       </motion.div>
-      <motion.div className="TaskMenu_Edit">
+      <motion.div className="TaskMenu_Edit flex flex-row gap-2 flex-wrap content-end">
         {!date && <AddTaskDate />}
         {/* <AddTaskTag /> */}
         {!hasSteps && <AddTaskStep taskId={taskId} />}

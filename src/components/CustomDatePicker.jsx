@@ -1,4 +1,3 @@
-import '../assets/scss/customdatepicker.scss'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import classNames from 'classnames'
@@ -53,26 +52,37 @@ const CustomDatePicker = (props) => {
   }
 
   return (
-    <div className="CustomDatePicker">
-      <div className="CustomDatePicker_Header">
-        <div className="CustomDatePicker_Header_Month">
-          <h2>{format(startOfMonthDate, 'MMM yyyy', { locale: es })}</h2>
-          <div className="CustomDatePicker_Header_Month_Change">
+    <div className="taskClickOutsideException flex flex-col gap-4">
+      <div className="taskClickOutsideException flex flex-col gap-4">
+        <div className="taskClickOutsideException w-full flex flex-row">
+          <h2 className="taskClickOutsideException text-xl text-black dark:text-white">
+            {format(startOfMonthDate, 'MMM yyyy', { locale: es })}
+          </h2>
+          <div className="taskClickOutsideException ml-auto flex flex-row gap-2">
             <div
               onClick={handlePrevMonth}
-              className={classNames({
-                CustomDatePicker_Header_Month_Change_Prev: true,
+              className={classNames('taskClickOutsideException cursor-pointer', {
                 disabled: isSameDay(startOfMonthDate, startOfMonth(today)) && !showDaysBeforeToday,
               })}
             >
-              <ChevronLeftIcon />
+              <div
+                className={classNames('taskClickOutsideException text-black dark:text-white cursor-pointer', {
+                  'text-gray-300 cursor-not-allowed dark:text-zinc-700':
+                    isSameDay(startOfMonthDate, startOfMonth(today)) && !showDaysBeforeToday,
+                })}
+              >
+                <ChevronLeftIcon />
+              </div>
             </div>
-            <div className="CustomDatePicker_Header_Month_Change_Next" onClick={handleNextMonth}>
+            <div
+              className="taskClickOutsideException text-black dark:text-white cursor-pointer"
+              onClick={handleNextMonth}
+            >
               <ChevronRightIcon />
             </div>
           </div>
         </div>
-        <div className="CustomDatePicker_Header_Week">
+        <div className="CustomDatePicker_Header_Week grid grid-cols-7 gap-4 text-black dark:text-white">
           <div>lun</div>
           <div>man</div>
           <div>mié</div>
@@ -82,17 +92,20 @@ const CustomDatePicker = (props) => {
           <div>dom</div>
         </div>
       </div>
-      <div className="CustomDatePicker_Content">
+      <div className="CustomDatePicker_Content grid grid-cols-7 gap-4">
         {days.map((day, dayIndex) => (
-          <div key={day.toString()} className="CustomDatePicker_Content_Day">
+          <div key={day.toString()} className="CustomDatePicker_Content_Day flex justify-center items-center">
             <time
               dateTime={format(day, 'yyyy-MM-dd')}
               onClick={() => handleSelectDay(day)}
-              className={classNames({
-                isNotCurrentMont: !isSameMonth(day, startOfMonthDate),
-                isBeforeToday: isBefore(day, today),
-                isToday: isToday(day),
-                isSelectedDay: isEqual(day, selectedDay),
+              className={classNames('text-base flex justify-center items-center rounded-full w-8 h-8', {
+                'text-gray-400 dark:text-zinc-600': !isSameMonth(day, startOfMonthDate),
+                'cursor-pointer': !isBefore(day, today),
+                'cursor-not-allowed': isBefore(day, today),
+                'text-black dark:text-white': !isToday(day) && !isEqual(day, selectedDay),
+                'text-red-500 dark:text-red-500': isToday(day) && !isEqual(day, selectedDay),
+                'text-white bg-black dark:text-black dark:bg-white': isEqual(day, selectedDay) && !isToday(day),
+                'text-red-500 bg-black dark:bg-white dark:text-red-500': isEqual(day, selectedDay) && isToday(day),
               })}
             >
               {format(day, 'd')}
