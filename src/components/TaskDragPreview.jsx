@@ -19,7 +19,7 @@ const TaskDragPreview = memo(function TaskDragPreview({ title, isCompleted, widt
         </div>
 
         <motion.div className="Task_Preview_Title w-full">
-          <div className="text-xl font-semibold">{title}</div>
+          <div className="text-xl text-black dark:text-white font-semibold">{title}</div>
         </motion.div>
         <div className="w-20 h-full flex justify-center items-center ml-auto">
           <motion.div className="flex justify-center items-center text-red-600">
